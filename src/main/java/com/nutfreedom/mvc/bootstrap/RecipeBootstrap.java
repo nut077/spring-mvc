@@ -39,7 +39,26 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
         Optional<UnitOfMeasure> dashUomOptional = unitOfMeasureRepository.findByDescription("Ounce");
         Optional<UnitOfMeasure> pintUomOptional = unitOfMeasureRepository.findByDescription("Pinch");
         Optional<UnitOfMeasure> cupsUomOptional = unitOfMeasureRepository.findByDescription("Cup");
-        
+
+        if (!eachUomOptional.isPresent()) {
+            throw new RuntimeException("Each not found in UnitOfMeasure");
+        }
+        if (!tableSpoonUomOptional.isPresent()) {
+            throw new RuntimeException("Tablespoon not found in UnitOfMeasure");
+        }
+        if (!teaSpoonUomOptional.isPresent()) {
+            throw new RuntimeException("Teaspoon not found in UnitOfMeasure");
+        }
+        if (!dashUomOptional.isPresent()) {
+            throw new RuntimeException("Ounce not found in UnitOfMeasure");
+        }
+        if (!pintUomOptional.isPresent()) {
+            throw new RuntimeException("Pinch not found in UnitOfMeasure");
+        }
+        if (!cupsUomOptional.isPresent()) {
+            throw new RuntimeException("Cup not found in UnitOfMeasure");
+        }
+
         UnitOfMeasure eachUom = eachUomOptional.get();
         UnitOfMeasure tableSpoonUom = tableSpoonUomOptional.get();
         UnitOfMeasure teapoonUom = teaSpoonUomOptional.get();
@@ -49,6 +68,13 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
         Optional<Category> americanCategoryOptional = categoryRepository.findByDescription("American");
         Optional<Category> mexicanCategoryOptional = categoryRepository.findByDescription("Mexican");
+
+        if (!americanCategoryOptional.isPresent()) {
+            throw new RuntimeException("American not found in Category");
+        }
+        if (!mexicanCategoryOptional.isPresent()) {
+            throw new RuntimeException("Mexican not found in Category");
+        }
 
         Category americanCategory = americanCategoryOptional.get();
         Category mexicanCategory = mexicanCategoryOptional.get();
