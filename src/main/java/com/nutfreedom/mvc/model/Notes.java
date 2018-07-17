@@ -1,14 +1,11 @@
 package com.nutfreedom.mvc.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
 
 import javax.persistence.*;
 
-@Data
-@EqualsAndHashCode(exclude = {"recipe"})
-@ToString(exclude = {"recipe"})
+@Getter
+@Setter
 @Entity
 public class Notes {
     @Id
