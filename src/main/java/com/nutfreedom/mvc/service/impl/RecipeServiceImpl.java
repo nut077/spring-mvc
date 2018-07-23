@@ -1,5 +1,6 @@
 package com.nutfreedom.mvc.service.impl;
 
+import com.nutfreedom.mvc.command.RecipeCommand;
 import com.nutfreedom.mvc.entity.Recipe;
 import com.nutfreedom.mvc.repository.RecipeRepository;
 import com.nutfreedom.mvc.service.RecipeService;
@@ -31,6 +32,12 @@ public class RecipeServiceImpl implements RecipeService {
             throw new RuntimeException("Recipe is not found");
         }
         return recipe.get();
+    }
+
+    @Override
+    public RecipeCommand saveRecipeCommand(RecipeCommand command) {
+        //Recipe detachedRecipe = recipeCommandTo
+        return null;
     }
 
 }
