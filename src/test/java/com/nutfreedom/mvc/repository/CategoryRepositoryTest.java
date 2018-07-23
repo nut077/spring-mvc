@@ -1,6 +1,6 @@
 package com.nutfreedom.mvc.repository;
 
-import com.nutfreedom.mvc.model.Category;
+import com.nutfreedom.mvc.entity.Category;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

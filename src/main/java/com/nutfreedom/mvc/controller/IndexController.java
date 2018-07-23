@@ -1,7 +1,7 @@
 package com.nutfreedom.mvc.controller;
 
-import com.nutfreedom.mvc.model.Category;
-import com.nutfreedom.mvc.model.UnitOfMeasure;
+import com.nutfreedom.mvc.entity.Category;
+import com.nutfreedom.mvc.entity.UnitOfMeasure;
 import com.nutfreedom.mvc.repository.CategoryRepository;
 import com.nutfreedom.mvc.repository.UnitOfMeasureRepository;
 import com.nutfreedom.mvc.service.RecipeService;

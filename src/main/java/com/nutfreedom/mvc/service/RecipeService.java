@@ -1,6 +1,6 @@
 package com.nutfreedom.mvc.service;
 
-import com.nutfreedom.mvc.model.Recipe;
+import com.nutfreedom.mvc.entity.Recipe;
 
 import java.util.Set;
 

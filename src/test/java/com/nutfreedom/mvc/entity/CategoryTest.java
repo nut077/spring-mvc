@@ -1,4 +1,4 @@
-package com.nutfreedom.mvc.model;
+package com.nutfreedom.mvc.entity;
 
 import org.junit.Before;
 import org.junit.Test;

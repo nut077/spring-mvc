@@ -1,6 +1,6 @@
 package com.nutfreedom.mvc.service.impl;
 
-import com.nutfreedom.mvc.model.Recipe;
+import com.nutfreedom.mvc.entity.Recipe;
 import com.nutfreedom.mvc.repository.RecipeRepository;
 import com.nutfreedom.mvc.service.RecipeService;
 import org.junit.Before;

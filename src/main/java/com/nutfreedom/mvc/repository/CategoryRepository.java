@@ -1,6 +1,6 @@
 package com.nutfreedom.mvc.repository;
 
-import com.nutfreedom.mvc.model.Category;
+import com.nutfreedom.mvc.entity.Category;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.Optional;

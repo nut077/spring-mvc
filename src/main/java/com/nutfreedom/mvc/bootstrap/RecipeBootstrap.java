@@ -1,6 +1,6 @@
 package com.nutfreedom.mvc.bootstrap;
 
-import com.nutfreedom.mvc.model.*;
+import com.nutfreedom.mvc.entity.*;
 import com.nutfreedom.mvc.repository.CategoryRepository;
 import com.nutfreedom.mvc.repository.RecipeRepository;
 import com.nutfreedom.mvc.repository.UnitOfMeasureRepository;

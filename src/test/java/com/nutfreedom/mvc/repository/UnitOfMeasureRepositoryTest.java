@@ -1,6 +1,6 @@
 package com.nutfreedom.mvc.repository;
 
-import com.nutfreedom.mvc.model.UnitOfMeasure;
+import com.nutfreedom.mvc.entity.UnitOfMeasure;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;

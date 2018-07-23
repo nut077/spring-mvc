@@ -1,8 +1,8 @@
 package com.nutfreedom.mvc.controller;
 
-import com.nutfreedom.mvc.model.Category;
-import com.nutfreedom.mvc.model.Recipe;
-import com.nutfreedom.mvc.model.UnitOfMeasure;
+import com.nutfreedom.mvc.entity.Category;
+import com.nutfreedom.mvc.entity.Recipe;
+import com.nutfreedom.mvc.entity.UnitOfMeasure;
 import com.nutfreedom.mvc.repository.CategoryRepository;
 import com.nutfreedom.mvc.repository.UnitOfMeasureRepository;
 import com.nutfreedom.mvc.service.RecipeService;
@@ -12,11 +12,9 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
-import javax.swing.text.html.Option;
 import java.util.HashSet;
 import java.util.Optional;
 import java.util.Set;
