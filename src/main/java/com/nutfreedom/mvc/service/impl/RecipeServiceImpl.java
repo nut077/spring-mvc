@@ -7,6 +7,7 @@ import com.nutfreedom.mvc.entity.Recipe;
 import com.nutfreedom.mvc.repository.RecipeRepository;
 import com.nutfreedom.mvc.service.RecipeService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Optional;
@@ -46,6 +47,12 @@ public class RecipeServiceImpl implements RecipeService {
         assert datachedRecipe != null;
         Recipe savedRecipe = recipeRepository.save(datachedRecipe);
         return recipeToRecipeCommand.convert(savedRecipe);
+    }
+
+    @Transactional
+    @Override
+    public RecipeCommand findCommandById(Long id) {
+        return recipeToRecipeCommand.convert(findById(id));
     }
 
 }
