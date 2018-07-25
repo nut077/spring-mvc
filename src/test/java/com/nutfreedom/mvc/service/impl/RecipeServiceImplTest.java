@@ -1,5 +1,7 @@
 package com.nutfreedom.mvc.service.impl;
 
+import com.nutfreedom.mvc.converter.RecipeCommandToRecipe;
+import com.nutfreedom.mvc.converter.RecipeToRecipeCommand;
 import com.nutfreedom.mvc.entity.Recipe;
 import com.nutfreedom.mvc.repository.RecipeRepository;
 import com.nutfreedom.mvc.service.RecipeService;
@@ -24,13 +26,18 @@ public class RecipeServiceImplTest {
     private RecipeService recipeService;
 
     @Mock
-    private
-    RecipeRepository recipeRepository;
+    private RecipeRepository recipeRepository;
+
+    @Mock
+    private RecipeToRecipeCommand recipeToRecipeCommand;
+
+    @Mock
+    private RecipeCommandToRecipe recipeCommandToRecipe;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        recipeService = new RecipeServiceImpl(recipeRepository);
+        recipeService = new RecipeServiceImpl(recipeRepository, recipeCommandToRecipe, recipeToRecipeCommand);
     }
 
     @Test
