@@ -1,42 +1,38 @@
 <!DOCTYPE html>
-<html lang="en"
-      xmlns:th="http://www.thymeleaf.org">
-<head>
-  <meta charset="UTF-8"/>
-  <title>Home</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/include :: include(~{ :: body})}">
 <body>
-<span th:replace="fragments/include"></span>
-<div class="container">
-  <div class="row justify-content-sm-center">
-    <div class="col-sm-6">
-      <div class="card">
-        <div class="bg-primary text-center text-white">
-          <h1>My Recipes!</h1>
+<div class="row justify-content-sm-center">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="bg-primary text-center text-white">
+        <h1>My Recipes!</h1>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-hover table-bordered" th:if="${not #lists.isEmpty(recipes)}">
+            <thead class="thead-light">
+            <tr>
+              <th>Id</th>
+              <th>Description</th>
+              <th>View</th>
+              <th>Update</th>
+              <th>Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="recipe : ${recipes}">
+              <td th:text="${recipe.id}">Id</td>
+              <td th:text="${recipe.description}">Description</td>
+              <td><a href="#" th:href="@{'/recipe/show/' + ${recipe.getId()}}">View</a></td>
+              <td><a href="#" th:href="@{'/recipe/' + ${recipe.getId()} + '/update'}">Update</a></td>
+              <td><a href="#" th:href="@{'/recipe/' + ${recipe.getId()} + '/delete'}">Delete</a></td>
+            </tr>
+            </tbody>
+          </table>
         </div>
-        <div class="card-body">
-          <div class="table-responsive">
-            <table class="table table-hover table-bordered" th:if="${not #lists.isEmpty(recipes)}">
-              <thead class="thead-light">
-              <tr>
-                <th>Id</th>
-                <th>Description</th>
-                <th>View</th>
-                <th>Update</th>
-              </tr>
-              </thead>
-              <tbody>
-              <tr th:each="recipe : ${recipes}">
-                <td th:text="${recipe.id}">Id</td>
-                <td th:text="${recipe.description}">Description</td>
-                <td><a href="#" th:href="@{'/recipe/show/' + ${recipe.getId()}}">View</a></td>
-                <td><a href="#" th:href="@{'/recipe/' + ${recipe.getId()} + '/update'}">Update</a></td>
-              </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+      </div>
+      <div class="card-footer text-center">
+        <a class="btn btn-success" href="#" th:href="@{/recipe/new}">Create</a>
       </div>
     </div>
   </div>

@@ -3,7 +3,7 @@ package com.nutfreedom.mvc.entity;
 import lombok.*;
 
 import javax.persistence.*;
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
@@ -17,6 +17,6 @@ public class Category {
     private String description;
 
     @ManyToMany(mappedBy = "categories")
-    private Set<Recipe> recipes = new HashSet<>();
+    private Set<Recipe> recipes = new LinkedHashSet<>();
 
 }
