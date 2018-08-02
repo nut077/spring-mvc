@@ -3,7 +3,7 @@ package com.nutfreedom.mvc.entity;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -32,7 +32,7 @@ public class CategoryTest {
 
     @Test
     public void getRecipes() {
-        Set<Recipe> recipes = new HashSet<>();
+        Set<Recipe> recipes = new LinkedHashSet<>();
         recipes.add(new Recipe());
         category.setRecipes(recipes);
         assertEquals(1, category.getRecipes().size());

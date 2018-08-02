@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.ui.Model;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -52,7 +52,7 @@ public class IndexControllerTest {
 
     @Test
     public void getIndex() {
-        Set<Recipe> recipes = new HashSet<>();
+        Set<Recipe> recipes = new LinkedHashSet<>();
         recipes.add(new Recipe());
 
         Recipe recipe = new Recipe();

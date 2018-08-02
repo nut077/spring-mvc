@@ -11,7 +11,7 @@ import org.junit.Test;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Optional;
 import java.util.Set;
 
@@ -76,7 +76,7 @@ public class RecipeServiceImplTest {
     @Test
     public void getRecipesTest() {
         Recipe recipe = new Recipe();
-        Set<Recipe> recipeData = new HashSet<>();
+        Set<Recipe> recipeData = new LinkedHashSet<>();
         recipeData.add(recipe);
         when(recipeService.getRecipes()).thenReturn(recipeData);
         Set<Recipe> recipes = recipeService.getRecipes();

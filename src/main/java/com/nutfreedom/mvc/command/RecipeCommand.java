@@ -4,7 +4,7 @@ import com.nutfreedom.mvc.entity.Difficulty;
 import lombok.Getter;
 import lombok.Setter;
 
-import java.util.HashSet;
+import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Getter
@@ -18,8 +18,8 @@ public class RecipeCommand {
     private String source;
     private String url;
     private String directions;
-    private Set<IngredientCommand> ingredients = new HashSet<>();
+    private Set<IngredientCommand> ingredients = new LinkedHashSet<>();
     private Difficulty difficulty;
     private NotesCommand notes;
-    private Set<CategoryCommand> categories = new HashSet<>();
+    private Set<CategoryCommand> categories = new LinkedHashSet<>();
 }
