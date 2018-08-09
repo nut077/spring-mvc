@@ -36,11 +36,11 @@
           <div class="form-group row">
             <div class="col-sm-3">
               <label for="prepTime">Prep Time:</label>
-              <input type="text" id="prepTime" class="form-control" th:field="*{prepTime}"/>
+              <input type="number" id="prepTime" class="form-control" th:field="*{prepTime}"/>
             </div>
             <div class="col-sm-3">
               <label for="cookTime">Cooktime:</label>
-              <input type="text" id="cookTime" class="form-control" th:field="*{cookTime}"/>
+              <input type="number" id="cookTime" class="form-control" th:field="*{cookTime}"/>
             </div>
             <div class="col-sm-3">
               <label>
@@ -56,7 +56,7 @@
           <div class=" form-group row">
             <div class="col-sm-3">
               <label for="servings">Servings:</label>
-              <input type="text" id="servings" class="form-control" th:field="*{servings}"/>
+              <input type="number" id="servings" class="form-control" th:field="*{servings}"/>
             </div>
             <div class="col-sm-3">
               <label for="source">Source:</label>
@@ -128,5 +128,15 @@
     </form>
   </div>
 </div>
+<script>
+  $(function () {
+    $("input[type='number']").keydown(function (e) {
+      const keycode = e.keyCode;
+      if (keycode === 69 || keycode === 107 || keycode === 109 || e.key === '-') {
+        e.preventDefault();
+      }
+    });
+  })
+</script>
 </body>
 </html>
