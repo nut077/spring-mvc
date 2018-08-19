@@ -13,7 +13,6 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 
 public class IngredientCommandToIngredientTest {
-    private static final Recipe RECIPE = new Recipe();
     private static final BigDecimal AMOUNT = new BigDecimal(1);
     private static final Long ID_VALUE = 1L;
     private static final String DESCRIPTION = "description";
@@ -36,8 +35,6 @@ public class IngredientCommandToIngredientTest {
         UnitOfMeasureCommand unitOfMeasureCommand = new UnitOfMeasureCommand();
         unitOfMeasureCommand.setId(UOM_ID);
         command.setUnitOfMeasure(unitOfMeasureCommand);
-        command.setRecipe(RECIPE);
-
         //when
         Ingredient ingredient = converter.convert(command);
 

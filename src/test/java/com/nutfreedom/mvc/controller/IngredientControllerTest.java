@@ -2,6 +2,7 @@ package com.nutfreedom.mvc.controller;
 
 import com.nutfreedom.mvc.command.IngredientCommand;
 import com.nutfreedom.mvc.command.RecipeCommand;
+import com.nutfreedom.mvc.service.IngredientService;
 import com.nutfreedom.mvc.service.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -24,14 +25,15 @@ public class IngredientControllerTest {
     @Mock
     private RecipeService recipeService;
 
-    //private IngredientService
+    @Mock
+    private IngredientService ingredientService;
 
     private MockMvc mockMvc;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        IngredientController controller = new IngredientController(recipeService);
+        IngredientController controller = new IngredientController(recipeService, ingredientService);
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
     }
 
@@ -52,9 +54,17 @@ public class IngredientControllerTest {
     }
 
     @Test
-    public void testShowIngredients() {
+    public void testShowIngredients() throws Exception {
         //given
         IngredientCommand ingredientCommand = new IngredientCommand();
-        //when()
+
+        //when
+        when(ingredientService.findByRecipeIdAndIngredientId(anyLong(), anyLong())).thenReturn(ingredientCommand);
+
+        //then
+        mockMvc.perform(get("/recipe/1/ingredient/1/show"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("recipe/ingredient/show"))
+                .andExpect(model().attributeExists("ingredient"));
     }
 }
