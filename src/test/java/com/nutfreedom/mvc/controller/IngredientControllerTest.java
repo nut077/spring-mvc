@@ -1,5 +1,6 @@
 package com.nutfreedom.mvc.controller;
 
+import com.nutfreedom.mvc.command.IngredientCommand;
 import com.nutfreedom.mvc.command.RecipeCommand;
 import com.nutfreedom.mvc.service.RecipeService;
 import org.junit.Before;
@@ -22,6 +23,8 @@ public class IngredientControllerTest {
 
     @Mock
     private RecipeService recipeService;
+
+    //private IngredientService
 
     private MockMvc mockMvc;
 
@@ -46,5 +49,12 @@ public class IngredientControllerTest {
 
         //then
         verify(recipeService, times(1)).findCommandById(anyLong());
+    }
+
+    @Test
+    public void testShowIngredients() {
+        //given
+        IngredientCommand ingredientCommand = new IngredientCommand();
+        //when()
     }
 }
