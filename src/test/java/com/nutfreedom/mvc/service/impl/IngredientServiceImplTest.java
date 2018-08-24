@@ -1,11 +1,14 @@
 package com.nutfreedom.mvc.service.impl;
 
 import com.nutfreedom.mvc.command.IngredientCommand;
+import com.nutfreedom.mvc.converter.IngredientCommandToIngredient;
 import com.nutfreedom.mvc.converter.IngredientToIngredientCommand;
+import com.nutfreedom.mvc.converter.UnitOfMeasureCommandToUnitOfMeasure;
 import com.nutfreedom.mvc.converter.UnitOfMeasureToUnitOfMeasureCommand;
 import com.nutfreedom.mvc.entity.Ingredient;
 import com.nutfreedom.mvc.entity.Recipe;
 import com.nutfreedom.mvc.repository.RecipeRepository;
+import com.nutfreedom.mvc.repository.UnitOfMeasureRepository;
 import com.nutfreedom.mvc.service.IngredientService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
@@ -25,21 +28,29 @@ import static org.mockito.Mockito.when;
 public class IngredientServiceImplTest {
 
     private final IngredientToIngredientCommand ingredientToIngredientCommand;
-
-    public IngredientServiceImplTest() {
-        this.ingredientToIngredientCommand = new IngredientToIngredientCommand(new UnitOfMeasureToUnitOfMeasureCommand());
-    }
+    private final IngredientCommandToIngredient ingredientCommandToIngredient;
 
     @Mock
     RecipeRepository recipeRepository;
 
+    @Mock
+    UnitOfMeasureRepository unitOfMeasureRepository;
+
     private IngredientService ingredientService;
+
+    public IngredientServiceImplTest() {
+        this.ingredientToIngredientCommand = new IngredientToIngredientCommand(new UnitOfMeasureToUnitOfMeasureCommand());
+        this.ingredientCommandToIngredient = new IngredientCommandToIngredient(new UnitOfMeasureCommandToUnitOfMeasure());
+    }
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
 
-        ingredientService = new IngredientServiceImpl(ingredientToIngredientCommand, recipeRepository);
+        ingredientService = new IngredientServiceImpl(ingredientToIngredientCommand,
+                ingredientCommandToIngredient,
+                recipeRepository,
+                unitOfMeasureRepository);
     }
 
     @Test

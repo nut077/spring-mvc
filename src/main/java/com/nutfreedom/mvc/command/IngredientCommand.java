@@ -1,6 +1,5 @@
 package com.nutfreedom.mvc.command;
 
-import com.nutfreedom.mvc.entity.Recipe;
 import lombok.Getter;
 import lombok.Setter;
 
