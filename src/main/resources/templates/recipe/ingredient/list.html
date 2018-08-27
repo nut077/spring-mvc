@@ -5,7 +5,15 @@
   <div class="col-sm-10">
     <div class="card">
       <div class="bg-primary text-white">
-        <h5 class="card-title pl-2 pt-2">Ingredients</h5>
+        <div class="row align-items-center">
+          <div class="col-sm-11">
+            <h5 class="card-title pl-2 pt-2">Ingredients</h5>
+          </div>
+          <div class="col-sm-1 pl-0">
+            <a class="btn btn-success" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredient/new'}"
+               role="button">New</a>
+          </div>
+        </div>
       </div>
       <div class="card-body">
         <div class="table-responsive" th:if="${not #lists.isEmpty(recipe.ingredients)}">
@@ -21,10 +29,18 @@
             </thead>
             <tr th:each="ingredient : ${recipe.ingredients}">
               <td th:text="${ingredient.getId()}">1</td>
-              <td th:text="${ingredient.getAmount()} + ' ' + ${ingredient.getUnitOfMeasure().getDescription()} + ' ' + ${ingredient.getDescription()} + '/show'">Tasty Goodnees 3</td>
-              <td><a href="#" th:href="@{'/recipe/' + ${recipe.getId()} + '/ingredient/' + ${ingredient.getId()} + '/show'}">View</a></td>
-              <td><a href="#" th:href="@{'/recipe/' + ${recipe.getId()} + '/ingredient/' + ${ingredient.getId()} + '/update'}">Update</a></td>
-              <td><a href="#" th:href="@{'/recipe/' + ${recipe.getId()} + '/ingredient/' + ${ingredient.getId()} + '/delete'}">Delete</a></td>
+              <td th:text="${ingredient.getAmount()} + ' ' + ${ingredient.getUnitOfMeasure().getDescription()} + ' ' + ${ingredient.getDescription()} + '/show'">
+                Tasty Goodnees 3
+              </td>
+              <td><a href="#"
+                     th:href="@{'/recipe/' + ${recipe.getId()} + '/ingredient/' + ${ingredient.getId()} + '/show'}">View</a>
+              </td>
+              <td><a href="#"
+                     th:href="@{'/recipe/' + ${recipe.getId()} + '/ingredient/' + ${ingredient.getId()} + '/update'}">Update</a>
+              </td>
+              <td><a href="#"
+                     th:href="@{'/recipe/' + ${recipe.getId()} + '/ingredient/' + ${ingredient.getId()} + '/delete'}">Delete</a>
+              </td>
             </tr>
           </table>
         </div>

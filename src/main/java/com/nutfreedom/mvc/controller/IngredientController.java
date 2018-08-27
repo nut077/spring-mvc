@@ -1,6 +1,7 @@
 package com.nutfreedom.mvc.controller;
 
 import com.nutfreedom.mvc.command.IngredientCommand;
+import com.nutfreedom.mvc.command.UnitOfMeasureCommand;
 import com.nutfreedom.mvc.service.IngredientService;
 import com.nutfreedom.mvc.service.RecipeService;
 import com.nutfreedom.mvc.service.UnitOfMeasureService;
@@ -35,7 +36,7 @@ public class IngredientController {
     }
 
     @GetMapping("recipe/{recipeId}/ingredient/{id}/update")
-    public String updateRecipeINgredient(@PathVariable String recipeId, @PathVariable String id, Model model) {
+    public String updateRecipeIngredient(@PathVariable String recipeId, @PathVariable String id, Model model) {
         model.addAttribute("ingredient", ingredientService.findByRecipeIdAndIngredientId(Long.valueOf(recipeId), Long.valueOf(id)));
         model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
         return "recipe/ingredient/ingredientform";
@@ -48,4 +49,22 @@ public class IngredientController {
         log.debug("saved ingredient id:" + savedCommand.getId());
         return "redirect:/recipe/" + savedCommand.getRecipeId() + "/ingredient/" + savedCommand.getId() + "/show";
     }
+
+    @GetMapping("recipe/{recipeId}/ingredient/{id}/delete")
+    public String deleteRecipeIngredient(@PathVariable String recipeId, @PathVariable String id) {
+        return "redirect:recipe/" + recipeId + "/ingredients";
+    }
+
+    @GetMapping("recipe/{recipeId}/ingredient/new")
+    public String newIngredient(@PathVariable String recipeId, Model model) {
+        //RecipeCommand recipeCommand = recipeService.findCommandById(Long.valueOf(recipeId));
+        IngredientCommand ingredientCommand = new IngredientCommand();
+        ingredientCommand.setRecipeId(Long.valueOf(recipeId));
+        model.addAttribute("ingredient", ingredientCommand);
+
+        ingredientCommand.setUnitOfMeasure(new UnitOfMeasureCommand());
+        model.addAttribute("uomList", unitOfMeasureService.listAllUoms());
+        return "recipe/ingredient/ingredientform";
+    }
+
 }

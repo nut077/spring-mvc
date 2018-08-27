@@ -65,13 +65,33 @@ public class IngredientServiceImpl implements IngredientService {
                 ingredientFound.setUnitOfMeasure(unitOfMeasureRepository.findById(command.getUnitOfMeasure().getId())
                         .orElseThrow(() -> new RuntimeException("UOM not found")));
             } else {
-                recipe.addIngredient(ingredientCommandToIngredient.convert(command));
+                Ingredient ingredient = ingredientCommandToIngredient.convert(command);
+                if (ingredient != null) {
+                    ingredient.setRecipe(recipe);
+                }
+                recipe.addIngredient(ingredient);
+
             }
 
-            Recipe saveRecipe = recipeRepository.save(recipe);
-            return ingredientToIngredientCommand.convert(saveRecipe.getIngredients().stream()
-            .filter(ingredient -> ingredient.getId().equals(command.getId()))
-            .findFirst().orElseThrow(() -> new RuntimeException("Ingredient not found")));
+            Recipe savedRecipe = recipeRepository.save(recipe);
+            Optional<Ingredient> savedIngredientOptional = savedRecipe.getIngredients().stream()
+                    .filter(ingredient -> ingredient.getId().equals(command.getId()))
+                    .findFirst();
+
+            if (!savedIngredientOptional.isPresent()) {
+                savedIngredientOptional = savedRecipe.getIngredients().stream()
+                        .filter(ingredient -> ingredient.getDescription().equals(command.getDescription()))
+                        .filter(ingredient -> ingredient.getAmount().equals(command.getAmount()))
+                        .filter(ingredient -> ingredient.getUnitOfMeasure().getId().equals(command.getUnitOfMeasure().getId()))
+                        .findFirst();
+            }
+
+            return ingredientToIngredientCommand.convert(savedIngredientOptional.orElseThrow(() -> new RuntimeException("Ingredient not found")));
         }
+    }
+
+    @Override
+    public void deleteIngredient(Long redipeid, Long ingredientid) {
+
     }
 }
