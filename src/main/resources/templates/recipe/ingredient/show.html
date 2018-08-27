@@ -14,11 +14,13 @@
             <tr>
               <th>ID</th>
               <th>Description</th>
+              <th>UOM</th>
             </tr>
             </thead>
             <tr>
               <td th:text="${ingredient.id}">1</td>
               <td th:text="${ingredient.description}">description</td>
+              <td th:text="${ingredient.unitOfMeasure.description}">uom</td>
             </tr>
           </table>
         </div>

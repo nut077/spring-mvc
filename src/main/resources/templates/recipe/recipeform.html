@@ -43,14 +43,13 @@
               <input type="number" id="cookTime" class="form-control" th:field="*{cookTime}"/>
             </div>
             <div class="col-sm-3">
-              <label>
-                Difficulty:
-                <select class="form-control">
-                  <option>Easy</option>
-                  <option>Medium</option>
-                  <option>Hard</option>
-                </select>
-              </label>
+              <label for="difficulty">Difficulty:</label>
+              <select class="form-control" id="difficulty" th:field="*{difficulty}">
+                <option value="Easy" th:each="difficultyValue : ${T(com.nutfreedom.mvc.entity.Difficulty).values()}"
+                        th:value="${difficultyValue.name()}"
+                        th:text="${difficultyValue.name()}">Easy
+                </option>
+              </select>
             </div>
           </div>
           <div class=" form-group row">
