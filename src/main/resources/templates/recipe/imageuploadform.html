@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{ :: body}, 'Upload images')}">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Upload images</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+<div class="row justify-content-sm-center">
+  <div class="col-sm-10">
+    <div class="card">
+      <div class="bg-primary text-white text-center">
+        <h5 class="card-title pt-2">Description</h5>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-12">
+            <form action="http://localhost" method="post" enctype="multipart/form-data" th:action="@{'/recipe/' + ${recipe.id} + '/image'}">
+              <label class="form-check-label">Select File</label>
+              <input type="file" id="imagefile" name="imagefile" class="custom-file"/>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
