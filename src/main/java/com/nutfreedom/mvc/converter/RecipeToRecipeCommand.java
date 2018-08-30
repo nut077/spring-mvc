@@ -2,27 +2,26 @@ package com.nutfreedom.mvc.converter;
 
 import com.nutfreedom.mvc.command.RecipeCommand;
 import com.nutfreedom.mvc.entity.Recipe;
+import lombok.AllArgsConstructor;
 import lombok.Synchronized;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.Nullable;
 import org.springframework.stereotype.Component;
 
+@AllArgsConstructor
 @Component
 public class RecipeToRecipeCommand implements Converter<Recipe, RecipeCommand> {
     private CategoryToCategoryCommand categoryConverter;
     private IngredientToIngredientCommand ingredientConverter;
     private NotesToNotesCommand notesConverter;
 
-    public RecipeToRecipeCommand(CategoryToCategoryCommand categoryConverter, IngredientToIngredientCommand ingredientConverter, NotesToNotesCommand notesConverter) {
-        this.categoryConverter = categoryConverter;
-        this.ingredientConverter = ingredientConverter;
-        this.notesConverter = notesConverter;
-    }
-
     @Synchronized
     @Nullable
     @Override
     public RecipeCommand convert(Recipe source) {
+        if (source == null) {
+            return null;
+        }
         final RecipeCommand command = new RecipeCommand();
         command.setId(source.getId());
         command.setCookTime(source.getCookTime());
