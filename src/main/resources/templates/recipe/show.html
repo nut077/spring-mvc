@@ -30,7 +30,7 @@
             </ul>
           </div>
           <div class="col-sm-6">
-            <img src="../../static/images/guacamole400x400WithX.jpg" th:src="@{/images/guacamole400x400WithX.jpg}" width="200px" height="200px"/>
+            <img src="../../static/images/guacamole400x400WithX.jpg" th:src="@{'/recipe/' + ${recipe.id} + '/recipeimage'}" width="200px" height="200px"/>
           </div>
         </div>
         <div class="row">
