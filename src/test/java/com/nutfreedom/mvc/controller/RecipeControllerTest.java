@@ -2,6 +2,8 @@ package com.nutfreedom.mvc.controller;
 
 import com.nutfreedom.mvc.command.RecipeCommand;
 import com.nutfreedom.mvc.entity.Recipe;
+import com.nutfreedom.mvc.exceptions.ControllerExceptionHandler;
+import com.nutfreedom.mvc.exceptions.NotFoundException;
 import com.nutfreedom.mvc.service.RecipeService;
 import org.junit.Before;
 import org.junit.Test;
@@ -26,14 +28,15 @@ public class RecipeControllerTest {
     private
     RecipeService recipeService;
 
-    private RecipeController controller;
     private MockMvc mockMvc;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        controller = new RecipeController(recipeService);
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
+        RecipeController controller = new RecipeController(recipeService);
+        mockMvc = MockMvcBuilders.standaloneSetup(controller)
+                .setControllerAdvice(new ControllerExceptionHandler())
+                .build();
     }
 
     @Test
@@ -58,6 +61,15 @@ public class RecipeControllerTest {
     }
 
     @Test
+    public void testGetRecipeNotFound() throws Exception {
+        when(recipeService.findById(anyLong())).thenThrow(NotFoundException.class);
+
+        mockMvc.perform(get("/recipe/1/show"))
+                .andExpect(status().isNotFound())
+                .andExpect(view().name("404NotFound"));
+    }
+
+    @Test
     public void testPostNewRecipeForm() throws Exception {
         RecipeCommand command = new RecipeCommand();
         command.setId(2L);
@@ -67,7 +79,8 @@ public class RecipeControllerTest {
         mockMvc.perform(post("/recipe")
                 .contentType(MediaType.APPLICATION_FORM_URLENCODED)
                 .param("id", "")
-                .param("description", "some string"))
+                .param("description", "some string")
+                .param("directions", "some directions"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/recipe/2/show"));
 

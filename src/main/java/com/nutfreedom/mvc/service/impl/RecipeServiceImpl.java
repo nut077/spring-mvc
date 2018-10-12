@@ -4,6 +4,7 @@ import com.nutfreedom.mvc.command.RecipeCommand;
 import com.nutfreedom.mvc.converter.RecipeCommandToRecipe;
 import com.nutfreedom.mvc.converter.RecipeToRecipeCommand;
 import com.nutfreedom.mvc.entity.Recipe;
+import com.nutfreedom.mvc.exceptions.NotFoundException;
 import com.nutfreedom.mvc.repository.RecipeRepository;
 import com.nutfreedom.mvc.service.RecipeService;
 import org.springframework.stereotype.Service;
@@ -36,7 +37,7 @@ public class RecipeServiceImpl implements RecipeService {
     public Recipe findById(Long id) {
         Optional<Recipe> recipe = recipeRepository.findById(id);
         if (!recipe.isPresent()) {
-            throw new RuntimeException("Recipe is not found");
+            throw new NotFoundException("Recipe is not found for ID value: " + id);
         }
         return recipe.get();
     }

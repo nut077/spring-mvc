@@ -1,0 +1,11 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout(~{ :: body}, 'Home')}">
+<body>
+<div class="row justify-content-sm-center">
+  <div class="col-sm-12">
+    <h1>Page not found</h1>
+    <h5 th:text="${exception}"></h5>
+  </div>
+</div>
+</body>
+</html>
